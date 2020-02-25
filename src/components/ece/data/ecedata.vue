@@ -1,5 +1,5 @@
 <template>
-    <div class="col-l-12 col-m-12 col-s-12 col-xs-emphased">
+    <div>
         <p class="hidden-xl hidden-l hidden-m"></p>
         <p class="hidden-xl hidden-l hidden-m"></p> 
         <h4 style="color:#E20074; text-align: center">Data</h4>

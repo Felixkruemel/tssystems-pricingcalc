@@ -17,7 +17,14 @@
         </div>
           <ecedata v-bind:datacapacity="datacapacity" v-bind:dataday="dataday" v-bind:datareplikas="datareplikas" v-bind:dataretention="dataretention" v-on:changedataday="vuedataday" v-on:changedatareplikas="vuedatareplikas" v-on:changedataretention="vuedataretention" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></ecedata>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
-          <eceelasticnodes v-bind:elasticanz="elasticanz" v-on:changeelasticnodes="vuechangeelasticnodes" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></eceelasticnodes>     
+          <h4 style="color:#E20074; text-align: center">Elastic</h4>
+          <div class="col-l-4">
+            <eceelasticnodes v-bind:elasticanz="elasticanz" v-on:changeelasticnodes="vuechangeelasticnodes"></eceelasticnodes>    
+          </div>
+           <div class="col-l-4">
+             <eceelasticramratio v-bind:elasticramratio="elasticramratio" v-on:changeelasticramratio="vuechangeelasticramratio" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></eceelasticramratio>
+           </div>
+          
       </div>
       <!-- End of Implentation of all ECE containers -->
 
@@ -54,6 +61,7 @@
           dataretention:1,
           datacapacity:20,
           elasticanz:1,
+          elasticramratio:16,
       }
     },
     methods: {
@@ -90,6 +98,11 @@
         this.elasticanz=value
 
         alert(this.elasticanz)
+      },
+      vuechangeelasticramratio(value) {
+        value=parseInt(value, 10)
+        this.elasticramratio=value
+        alert(this.elasticramratio)
       },
     },
 

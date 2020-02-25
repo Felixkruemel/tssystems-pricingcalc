@@ -21,9 +21,13 @@
           <div class="col-l-4">
             <eceelasticnodes v-bind:elasticanz="elasticanz" v-on:changeelasticnodes="vuechangeelasticnodes"></eceelasticnodes>    
           </div>
-           <div class="col-l-4">
-             <eceelasticramratio v-bind:elasticramratio="elasticramratio" v-on:changeelasticramratio="vuechangeelasticramratio" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></eceelasticramratio>
-           </div>
+          <div class="col-l-4">
+            <eceelasticramratio v-bind:elasticramratio="elasticramratio" v-on:changeelasticramratio="vuechangeelasticramratio"></eceelasticramratio>
+          </div>
+          <div class="col-l-4">
+            <eceelasticram></eceelasticram>
+          </div> 
+          <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           
       </div>
       <!-- End of Implentation of all ECE containers -->
@@ -42,6 +46,7 @@
   import ecedata from '@/components/ece/data/ecedata.vue'
   import eceelasticnodes from '@/components/ece/elastic/eceelasticnodes.vue'
   import eceelasticramratio from '@/components/ece/elastic/eceelasticramratio.vue'
+  import eceelasticram from '@/components/ece/elastic/eceelasticram.vue'
 
   export default {
     name: 'app',
@@ -50,7 +55,8 @@
       sidebar,
       ecedata,
       eceelasticnodes,
-      eceelasticramratio
+      eceelasticramratio,
+      eceelasticram
     },
     data () {
       return {

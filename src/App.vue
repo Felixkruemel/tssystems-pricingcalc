@@ -48,7 +48,7 @@
           showece:false,
           selectedece:false,
           dataday:10,
-          datareplikas:2,
+          datareplikas:1,
           dataretention:1,
           datacapacity:20,
       }

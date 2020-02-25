@@ -17,7 +17,7 @@
         </div>
           <ecedata v-bind:datacapacity="datacapacity" v-bind:dataday="dataday" v-bind:datareplikas="datareplikas" v-bind:dataretention="dataretention" v-on:changedataday="vuedataday" v-on:changedatareplikas="vuedatareplikas" v-on:changedataretention="vuedataretention" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></ecedata>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
-          <eceelasticnodes style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></eceelasticnodes>     
+          <eceelasticnodes v-bind:elasticanz="elasticanz" v-on:changeelasticnodes="vuechangeelasticnodes" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></eceelasticnodes>     
       </div>
       <!-- End of Implentation of all ECE containers -->
 
@@ -51,6 +51,7 @@
           datareplikas:1,
           dataretention:1,
           datacapacity:20,
+          elasticanz:1,
       }
     },
     methods: {
@@ -81,7 +82,13 @@
       },
       calcdatacapacity() {
         this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
-      }
+      },
+      vuechangeelasticnodes(value) {
+        value=parseInt(value, 10)
+        this.elasticanz=value
+
+        alert(this.elasticanz)
+      },
     },
 
   };

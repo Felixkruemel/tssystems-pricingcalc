@@ -34,6 +34,7 @@
   import sidebar from '@/components/Sidebar.vue'
   import ecedata from '@/components/ece/data/ecedata.vue'
   import eceelasticnodes from '@/components/ece/elastic/eceelasticnodes.vue'
+  import eceelasticramratio from '@/components/ece/elastic/eceelasticramratio.vue'
 
   export default {
     name: 'app',
@@ -41,7 +42,8 @@
       headerbrand,
       sidebar,
       ecedata,
-      eceelasticnodes
+      eceelasticnodes,
+      eceelasticramratio
     },
     data () {
       return {

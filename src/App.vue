@@ -15,8 +15,12 @@
         <div class="col-xl-hide col-l-hide col-m-hide col-s-12 col-xs-12">
           <h4 style="color:#E20074; text-align: center"><strong>Options</strong></h4>
         </div>
+          <!-- Start Data -->
           <ecedata v-bind:datacapacity="datacapacity" v-bind:dataday="dataday" v-bind:datareplikas="datareplikas" v-bind:dataretention="dataretention" v-on:changedataday="vuedataday" v-on:changedatareplikas="vuedatareplikas" v-on:changedataretention="vuedataretention" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></ecedata>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <!-- End Data -->
+
+          <!-- Start Elastic -->
           <h4 style="color:#E20074; text-align: center">Elastic</h4>
           <div class="col-l-4">
             <eceelasticnodes v-bind:elasticanz="elasticanz" v-on:changeelasticnodes="vuechangeelasticnodes"></eceelasticnodes>    
@@ -30,6 +34,9 @@
           <h4 style="text-align: center">Price: {{elasticprice}}€</h4> 
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <!-- End Elastic -->
+
+          <!-- Start Kibana -->
           <h4 style="color:#E20074; text-align: center">Kibana</h4>
           <div class="col-l-6">
             <ecekibananodes v-bind:kibanaanz="kibanaanz" v-on:changekibananodes="vuechangekibananodes"></ecekibananodes>
@@ -40,6 +47,34 @@
           <h4 style="text-align: center">Price: {{kibanaprice}}€</h4> 
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <!-- End Kibana -->
+
+          <!-- Start Final Pricing -->
+          <h4 style="color:#E20074; text-align: center">Final Pricing</h4>
+          <div class="col-l-2 col-m-4 col-s-4 col-xs-4">
+            <p style="text-align: center">Data in Cluster:</p> 
+            <p style="text-align: center">{{elasticdataincluster}} GB</p>
+          </div>
+          <div class="col-l-2 col-m-4 col-s-4 col-xs-4">
+            <p style="text-align: center">Data buffer:</p> 
+            <p style="text-align: center">{{elasticdatabuffer}} %</p>
+          </div>
+          <div class="col-l-2 col-m-4 col-s-4 col-xs-4">
+            <p style="text-align: center">Data in queue on LS:</p> 
+            <p style="text-align: center">0</p>
+          </div>
+          <div class="col-l-6 col-m-12 col-s-12 col-xs-12">
+            <p style="text-align: center">Price for ELK in ECE:</p> 
+            <div class="col-l-6">
+              <p class="text-brand text-bold" style="text-align: center">{{ecefinalpricemonth}}€ per month</p>
+            </div>
+            <div class="col-l-6">
+              <p class="text-brand text-bold" style="text-align: center">{{ecefinalpriceyear}}€ per year</p>
+            </div>
+          </div>
+          <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
+          <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <!-- End Final Pricing -->
       </div>
       <!-- End of Implementation of all ECE containers -->
 
@@ -86,9 +121,12 @@
           elasticprice:24.26,
           elasticram_pricepergb:1.50,
           elasticdataincluster:16,
+          elasticdatabuffer:-224900,
           kibanaanz:1,
           kibanaram:1,
           kibanaprice:18.32,
+          ecefinalpricemonth:42.58,
+          ecefinalpriceyear:510.96,
       }
     },
     methods: {
@@ -144,6 +182,9 @@
       },
       calcdatacapacity() {
         this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
+
+        this.calcelasticdatabuffer()
+        this.calcecefinalprice()
       },
       calcelasticprice() {
         if (this.elasticram>10) this.elasticram_pricepergb=1.35
@@ -152,11 +193,28 @@
         this.elasticdataincluster=this.elasticram*this.elasticanz*this.elasticramratio
         this.elasticprice=((this.elasticdataincluster*0.10)+(this.elasticanz*this.elasticram*7.03)+((this.elasticanz*this.elasticram*10.42)*this.elasticram_pricepergb))
         this.elasticprice=Number((this.elasticprice).toFixed(2))
+
+        this.calcelasticdatabuffer()
+        this.calcecefinalprice()
       },
       calckibanaprice() {
         this.kibanaprice=(((this.kibanaanz*this.kibanaram*7.03)+(this.kibanaanz*this.kibanaram*10.42))*1.05)
         this.kibanaprice=Number((this.kibanaprice).toFixed(2))
-      }
+
+        this.calcelasticdatabuffer()
+        this.calcecefinalprice()
+      },
+      calcelasticdatabuffer() {
+        if (this.elasticdataincluster>0) this.elasticdatabuffer=(100-((this.datacapacity/this.elasticdataincluster)*100));
+        else this.elasticdataincluster=0;
+        this.elasticdatabuffer=Math.floor(this.elasticdatabuffer)
+      },
+      calcecefinalprice() {
+        this.ecefinalpricemonth=this.kibanaprice+this.elasticprice
+        this.ecefinalpricemonth=Number((this.ecefinalpricemonth).toFixed(2))
+        this.ecefinalpriceyear=12*this.ecefinalpricemonth
+        this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
+      },
     },
 
   };

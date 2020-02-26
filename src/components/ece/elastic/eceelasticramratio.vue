@@ -26,7 +26,7 @@
 export default {
     name:"eceelasticramratio" ,
     props: {
-        elasticramratio:String,
+        elasticramratio:Number,
     },
     data () {
       return {

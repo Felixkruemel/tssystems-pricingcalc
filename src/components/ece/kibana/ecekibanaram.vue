@@ -26,7 +26,7 @@
 export default {
     name:"ecekibanaram" ,
     props: {
-        kibanaram:String,
+        kibanaram:Number,
     },
     data () {
       return {

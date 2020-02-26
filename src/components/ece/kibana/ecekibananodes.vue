@@ -23,7 +23,7 @@
 export default {
     name:"ecekibananodes" ,
     props: {
-        kibanaanz:String,
+        kibanaanz:Number,
     },
     data () {
       return {

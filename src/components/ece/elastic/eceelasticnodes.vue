@@ -32,7 +32,7 @@
 export default {
     name:"eceelasticnodes" ,
     props: {
-        elasticanz:String,
+        elasticanz:Number,
     },
     data () {
       return {

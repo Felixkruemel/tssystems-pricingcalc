@@ -80,6 +80,7 @@
 
 
     </div>
+    <footerbrand></footerbrand>
 
     
   </div>
@@ -88,6 +89,7 @@
 <script>
   import headerbrand from '@/components/headerbrand.vue'
   import sidebar from '@/components/Sidebar.vue'
+  import footerbrand from '@/components/footerbrand.vue'
   import ecedata from '@/components/ece/data/ecedata.vue'
   import eceelasticnodes from '@/components/ece/elastic/eceelasticnodes.vue'
   import eceelasticramratio from '@/components/ece/elastic/eceelasticramratio.vue'
@@ -100,12 +102,13 @@
     components: {
       headerbrand,
       sidebar,
+      footerbrand,
       ecedata,
       eceelasticnodes,
       eceelasticramratio,
       eceelasticram,
       ecekibananodes,
-      ecekibanaram
+      ecekibanaram,
     },
     data () {
       return {

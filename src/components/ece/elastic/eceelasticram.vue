@@ -35,7 +35,7 @@
 export default {
     name:"eceelasticram" ,
     props: {
-        elasticram:String,
+        elasticram:Number,
     },
     data () {
       return {

@@ -4,7 +4,7 @@
         <p class="hidden-xl hidden-l hidden-m"></p> 
             <p style="text-align: center">RAM per Node</p>
             <div class="form-input-set">
-                <select v-bind:value="elasticram" v-on:input="$emit('changeelasticram', $event.target.value)" class="form-select" style="background: white">
+                <select v-bind:value="kibanaram" v-on:input="$emit('changekibanaram', $event.target.value)" class="form-select" style="background: white">
                     <option value=1>
                         <p style="text-align: center">1 GB</p>
                     </option>
@@ -16,16 +16,7 @@
                     </option>
                     <option value=8>
                         <p style="text-align: center">8 GB</p>
-                    </option>
-                    <option value=16>
-                        <p style="text-align: center">16 GB</p>
-                    </option>
-                    <option value=32>
-                        <p style="text-align: center">32 GB</p>
-                    </option>
-                    <option value=64>
-                        <p style="text-align: center">64 GB</p>
-                    </option>                               
+                    </option>                              
                 </select>
             </div>
     </div>        
@@ -33,9 +24,9 @@
 
 <script>
 export default {
-    name:"eceelasticram" ,
+    name:"ecekibanaram" ,
     props: {
-        elasticram:String,
+        kibanaram:String,
     },
     data () {
       return {

@@ -29,7 +29,14 @@
           </div>
           <h4 style="text-align: center">Price: {{elasticprice}}€</h4> 
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
-          
+          <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <h4 style="color:#E20074; text-align: center">Kibana</h4>
+          <div class="col-l-6">
+            <ecekibananodes v-bind:kibanaanz="kibanaanz" v-on:changekibananodes="vuechangekibananodes"></ecekibananodes>
+          </div>
+          <div class="col-l-6">
+            <ecekibanaram v-bind:kibanaram="kibanaram" v-on:changekibanaram="vuechangekibanaram"></ecekibanaram>
+          </div>
       </div>
       <!-- End of Implementation of all ECE containers -->
 
@@ -41,13 +48,14 @@
 </template>
 
 <script>
- // var showece=false;
   import headerbrand from '@/components/headerbrand.vue'
   import sidebar from '@/components/Sidebar.vue'
   import ecedata from '@/components/ece/data/ecedata.vue'
   import eceelasticnodes from '@/components/ece/elastic/eceelasticnodes.vue'
   import eceelasticramratio from '@/components/ece/elastic/eceelasticramratio.vue'
   import eceelasticram from '@/components/ece/elastic/eceelasticram.vue'
+  import ecekibananodes from '@/components/ece/kibana/ecekibananodes.vue'
+  import ecekibanaram from '@/components/ece/kibana/ecekibanaram.vue'
 
   export default {
     name: 'app',
@@ -57,7 +65,9 @@
       ecedata,
       eceelasticnodes,
       eceelasticramratio,
-      eceelasticram
+      eceelasticram,
+      ecekibananodes,
+      ecekibanaram
     },
     data () {
       return {
@@ -73,6 +83,8 @@
           elasticprice:24.26,
           elasticram_pricepergb:1.50,
           elasticdataincluster:16,
+          kibanaanz:1,
+          kibanaram:1,
       }
     },
     methods: {
@@ -115,6 +127,16 @@
         value=parseInt(value, 10)
         this.elasticram=value
         this.calcelasticprice();
+      },
+      vuechangekibananodes(value) {
+        value=parseInt(value, 10)
+        this.kibanaanz=value
+        alert(this.kibanaanz)
+      },
+      vuechangekibanaram(value) {
+        value=parseInt(value, 10)
+        this.kibanaram=value
+        alert(this.kibanaram)
       },
       calcdatacapacity() {
         this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;

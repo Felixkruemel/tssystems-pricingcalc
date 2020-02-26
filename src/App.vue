@@ -37,6 +37,9 @@
           <div class="col-l-6">
             <ecekibanaram v-bind:kibanaram="kibanaram" v-on:changekibanaram="vuechangekibanaram"></ecekibanaram>
           </div>
+          <h4 style="text-align: center">Price: {{kibanaprice}}€</h4> 
+          <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
+          <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
       </div>
       <!-- End of Implementation of all ECE containers -->
 
@@ -85,6 +88,7 @@
           elasticdataincluster:16,
           kibanaanz:1,
           kibanaram:1,
+          kibanaprice:18.32,
       }
     },
     methods: {
@@ -131,12 +135,12 @@
       vuechangekibananodes(value) {
         value=parseInt(value, 10)
         this.kibanaanz=value
-        alert(this.kibanaanz)
+        this.calckibanaprice();
       },
       vuechangekibanaram(value) {
         value=parseInt(value, 10)
         this.kibanaram=value
-        alert(this.kibanaram)
+        this.calckibanaprice();
       },
       calcdatacapacity() {
         this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
@@ -148,6 +152,10 @@
         this.elasticdataincluster=this.elasticram*this.elasticanz*this.elasticramratio
         this.elasticprice=((this.elasticdataincluster*0.10)+(this.elasticanz*this.elasticram*7.03)+((this.elasticanz*this.elasticram*10.42)*this.elasticram_pricepergb))
         this.elasticprice=Number((this.elasticprice).toFixed(2))
+      },
+      calckibanaprice() {
+        this.kibanaprice=(((this.kibanaanz*this.kibanaram*7.03)+(this.kibanaanz*this.kibanaram*10.42))*1.05)
+        this.kibanaprice=Number((this.kibanaprice).toFixed(2))
       }
     },
 

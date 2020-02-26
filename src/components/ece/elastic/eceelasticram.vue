@@ -2,9 +2,9 @@
     <div>
         <p class="hidden-xl hidden-l hidden-m"></p>
         <p class="hidden-xl hidden-l hidden-m"></p> 
-            <p style="text-align: center">RAM/DISK Ratio</p>
+            <p style="text-align: center">RAM per Node</p>
             <div class="form-input-set">
-                <select v-bind:value="elasticramratio" v-on:input="$emit('changeelasticramratio', $event.target.value)" class="form-select" style="background: white">
+                <select v-bind:value="elasticram" v-on:input="$emit('changeelasticram', $event.target.value)" class="form-select" style="background: white">
                     <option value=1>
                         <p style="text-align: center">1 GB</p>
                     </option>
@@ -35,7 +35,7 @@
 export default {
     name:"eceelasticramratio" ,
     props: {
-        elasticramratio:String,
+        elasticram:String,
     },
     data () {
       return {

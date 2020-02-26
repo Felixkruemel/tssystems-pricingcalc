@@ -25,12 +25,13 @@
             <eceelasticramratio v-bind:elasticramratio="elasticramratio" v-on:changeelasticramratio="vuechangeelasticramratio"></eceelasticramratio>
           </div>
           <div class="col-l-4">
-            <eceelasticram></eceelasticram>
-          </div> 
+            <eceelasticram v-bind:elasticram="elasticram" v-on:changeelasticram="vuechangeelasticram"></eceelasticram>
+          </div>
+          <h4 style="text-align: center">Price: {{elasticprice}}€</h4> 
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           
       </div>
-      <!-- End of Implentation of all ECE containers -->
+      <!-- End of Implementation of all ECE containers -->
 
 
     </div>
@@ -68,6 +69,10 @@
           datacapacity:20,
           elasticanz:1,
           elasticramratio:16,
+          elasticram:1,
+          elasticprice:24.26,
+          elasticram_pricepergb:1.50,
+          elasticdataincluster:16,
       }
     },
     methods: {
@@ -96,20 +101,32 @@
         this.dataretention=value
         this.calcdatacapacity();
       },
-      calcdatacapacity() {
-        this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
-      },
       vuechangeelasticnodes(value) {
         value=parseInt(value, 10)
         this.elasticanz=value
-
-        alert(this.elasticanz)
+        this.calcelasticprice();
       },
       vuechangeelasticramratio(value) {
         value=parseInt(value, 10)
         this.elasticramratio=value
-        alert(this.elasticramratio)
+        this.calcelasticprice();
       },
+      vuechangeelasticram(value) {
+        value=parseInt(value, 10)
+        this.elasticram=value
+        this.calcelasticprice();
+      },
+      calcdatacapacity() {
+        this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
+      },
+      calcelasticprice() {
+        if (this.elasticram>10) this.elasticram_pricepergb=1.35
+        else this.elasticram_pricepergb=1.50
+
+        this.elasticdataincluster=this.elasticram*this.elasticanz*this.elasticramratio
+        this.elasticprice=((this.elasticdataincluster*0.10)+(this.elasticanz*this.elasticram*7.03)+((this.elasticanz*this.elasticram*10.42)*this.elasticram_pricepergb))
+        this.elasticprice=Number((this.elasticprice).toFixed(2))
+      }
     },
 
   };

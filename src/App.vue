@@ -96,9 +96,23 @@
   import eceelasticram from '@/components/ece/elastic/eceelasticram.vue'
   import ecekibananodes from '@/components/ece/kibana/ecekibananodes.vue'
   import ecekibanaram from '@/components/ece/kibana/ecekibanaram.vue'
+  import vuedataday from '@/components/ece/ecefunctions.js'
+  import vuedatareplikas from '@/components/ece/ecefunctions.js'
+  import vuedataretention from '@/components/ece/ecefunctions.js'
+  import vuechangeelasticnodes from '@/components/ece/ecefunctions.js'
+  import vuechangeelasticramratio from '@/components/ece/ecefunctions.js'
+  import vuechangeelasticram from '@/components/ece/ecefunctions.js'
+  import vuechangekibananodes from '@/components/ece/ecefunctions.js'
+  import vuechangekibanaram from '@/components/ece/ecefunctions.js'
+  import calcdatacapacity from '@/components/ece/ecefunctions.js'
+  import calcelasticprice from '@/components/ece/ecefunctions.js'
+  import calckibanaprice from '@/components/ece/ecefunctions.js'
+  import calcelasticdatabuffer from '@/components/ece/ecefunctions.js'
+  import calcecefinalprice from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
+    mixins: [vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -112,9 +126,9 @@
     },
     data () {
       return {
+          dataday:10,
           showece:false,
           selectedece:false,
-          dataday:10,
           datareplikas:1,
           dataretention:1,
           datacapacity:20,
@@ -141,84 +155,11 @@
         else if (this.showece==true) {
           this.showece=false;
           this.selectedece=false;
+          this.test();
         }
       },
-      vuedataday(value) {
-        value=parseInt(value, 10)
-        this.dataday=value;
-        this.calcdatacapacity();
-      },
-      vuedatareplikas(value) {
-        value=parseInt(value, 10)
-        this.datareplikas=value
-        this.calcdatacapacity();
-      },
-      vuedataretention(value) {
-        value=parseInt(value, 10)
-        this.dataretention=value
-        this.calcdatacapacity();
-      },
-      vuechangeelasticnodes(value) {
-        value=parseInt(value, 10)
-        this.elasticanz=value
-        this.calcelasticprice();
-      },
-      vuechangeelasticramratio(value) {
-        value=parseInt(value, 10)
-        this.elasticramratio=value
-        this.calcelasticprice();
-      },
-      vuechangeelasticram(value) {
-        value=parseInt(value, 10)
-        this.elasticram=value
-        this.calcelasticprice();
-      },
-      vuechangekibananodes(value) {
-        value=parseInt(value, 10)
-        this.kibanaanz=value
-        this.calckibanaprice();
-      },
-      vuechangekibanaram(value) {
-        value=parseInt(value, 10)
-        this.kibanaram=value
-        this.calckibanaprice();
-      },
-      calcdatacapacity() {
-        this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
-
-        this.calcelasticdatabuffer()
-        this.calcecefinalprice()
-      },
-      calcelasticprice() {
-        if (this.elasticram>10) this.elasticram_pricepergb=1.35
-        else this.elasticram_pricepergb=1.50
-
-        this.elasticdataincluster=this.elasticram*this.elasticanz*this.elasticramratio
-        this.elasticprice=((this.elasticdataincluster*0.10)+(this.elasticanz*this.elasticram*7.03)+((this.elasticanz*this.elasticram*10.42)*this.elasticram_pricepergb))
-        this.elasticprice=Number((this.elasticprice).toFixed(2))
-
-        this.calcelasticdatabuffer()
-        this.calcecefinalprice()
-      },
-      calckibanaprice() {
-        this.kibanaprice=(((this.kibanaanz*this.kibanaram*7.03)+(this.kibanaanz*this.kibanaram*10.42))*1.05)
-        this.kibanaprice=Number((this.kibanaprice).toFixed(2))
-
-        this.calcelasticdatabuffer()
-        this.calcecefinalprice()
-      },
-      calcelasticdatabuffer() {
-        if (this.elasticdataincluster>0) this.elasticdatabuffer=(100-((this.datacapacity/this.elasticdataincluster)*100));
-        else this.elasticdataincluster=0;
-        this.elasticdatabuffer=Math.floor(this.elasticdatabuffer)
-      },
-      calcecefinalprice() {
-        this.ecefinalpricemonth=this.kibanaprice+this.elasticprice
-        this.ecefinalpricemonth=Number((this.ecefinalpricemonth).toFixed(2))
-        this.ecefinalpriceyear=12*this.ecefinalpricemonth
-        this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
-      },
     },
+    
 
   };
   

@@ -80,7 +80,6 @@
 
     </div>
     <footerbrand></footerbrand>
-  <p>{{returnapi}}</p>
     
   </div>
 </template>
@@ -109,11 +108,10 @@
   import calcelasticdatabuffer from '@/components/ece/ecefunctions.js'
   import calcecefinalprice from '@/components/ece/ecefunctions.js'
   import getdata from '@/components/ece/ecefunctions.js'
-  import apicall from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
-    mixins: [apicall, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,

@@ -47,9 +47,11 @@ export default {
             this.calcecefinalprice()
           },
           calcelasticprice() {
-            if (this.elasticram>10) this.elasticram_pricepergb=1.35
-            else this.elasticram_pricepergb=1.50
-    
+          //  if (this.elasticram>10) this.elasticram_pricepergb=1.35
+          //  else this.elasticram_pricepergb=1.50
+            if (this.elasticram>10) this.elasticram_pricepergb=this.returnapi.prices[0].amount
+            else this.elasticram_pricepergb=this.returnapi.prices[1].amount
+
             this.elasticdataincluster=this.elasticram*this.elasticanz*this.elasticramratio
             this.elasticprice=((this.elasticdataincluster*0.10)+(this.elasticanz*this.elasticram*7.03)+((this.elasticanz*this.elasticram*10.42)*this.elasticram_pricepergb))
             this.elasticprice=Number((this.elasticprice).toFixed(2))
@@ -75,24 +77,28 @@ export default {
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
           },
-          async getdata() {
+      /*    async getdata() {
             var xhr = new XMLHttpRequest();
+            var response = new Object();
             xhr.open('GET', "https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json", true)
-            xhr.onload = function (e) {
+            xhr.onload = function () {
               if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                  console.log(JSON.parse(xhr.responseText).prices[0].amount)
-                  if (this.elasticram>10) this.elasticram_pricepergb=(JSON.parse(xhr.responseText).prices[0].amount)
-                  else this.elasticram_pricepergb=(JSON.parse(xhr.responseText).prices[1].amount)
-                  console.log(this.elasticram_pricepergb)
+                  response=JSON.parse(xhr.responseText)
+                  console.log(response)
                 } else {
                   console.error(xhr.statusText)
                 }
               }
-            }
+            }            
+            
             xhr.send();
+            console.log(response)
+            if (this.elasticram>10) this.elasticram_pricepergb=response.prices[0].amount
+            else this.elasticram_pricepergb=response.prices[1].amount
+            console.log(this.elasticram_pricepergb)
             
     
-          },
+          }, */
     }
 }

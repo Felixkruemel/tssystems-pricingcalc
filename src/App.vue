@@ -80,7 +80,7 @@
 
     </div>
     <footerbrand></footerbrand>
-
+  <p>{{returnapi}}</p>
     
   </div>
 </template>
@@ -109,10 +109,11 @@
   import calcelasticdatabuffer from '@/components/ece/ecefunctions.js'
   import calcecefinalprice from '@/components/ece/ecefunctions.js'
   import getdata from '@/components/ece/ecefunctions.js'
+  import apicall from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
-    mixins: [getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [apicall, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -144,10 +145,8 @@
           kibanaprice:18.32,
           ecefinalpricemonth:42.58,
           ecefinalpriceyear:510.96,
+          returnapi:null,
       }
-    },
-    mounted() {
-      this.getdata()
     },
     methods: {
       vueshowece() {
@@ -163,6 +162,11 @@
       },
 
     },
+    mounted() {
+      this.axios
+        .get('https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json')
+        .then(response => (this.returnapi=response.data))
+    }
     
 
 

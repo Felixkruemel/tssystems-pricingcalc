@@ -31,9 +31,9 @@
                     <div class="brandnav brandnav-lvl-1" id="MainMenu">
                         <ul class="nav">
                             <li><a href="https://open-telekom-cloud.com/de">OPEN TELEKOM CLOUD</a></li>
-                            <li class="active"><a href="index.html">Startseite</a></li>
-                            <li><a href="#">Hilfe</a></li>
-                            <li><a href="#">Kontakt</a></li>
+                            <li class="active"><a href="index.html">Startpage</a></li>
+                            <li><a href="https://open-telekom-cloud.com/en/support">Help</a></li>
+                            <li><a href="https://open-telekom-cloud.com/en/support">Contact</a></li>
                             <li><a class="hidden-xl hidden-l hidden-m" data-open="brandnav">Services</a>
                                 <div class="brandnav">
                                     <ul class="nav">

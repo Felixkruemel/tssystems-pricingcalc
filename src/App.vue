@@ -78,7 +78,6 @@
       </div>
       <!-- End of Implementation of all ECE containers -->
 
-
     </div>
     <footerbrand></footerbrand>
 
@@ -109,10 +108,11 @@
   import calckibanaprice from '@/components/ece/ecefunctions.js'
   import calcelasticdatabuffer from '@/components/ece/ecefunctions.js'
   import calcecefinalprice from '@/components/ece/ecefunctions.js'
+  import getdata from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
-    mixins: [vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -146,6 +146,9 @@
           ecefinalpriceyear:510.96,
       }
     },
+    mounted() {
+      this.getdata()
+    },
     methods: {
       vueshowece() {
         if (this.showece==false) {
@@ -158,8 +161,10 @@
           this.test();
         }
       },
+
     },
     
+
 
   };
   

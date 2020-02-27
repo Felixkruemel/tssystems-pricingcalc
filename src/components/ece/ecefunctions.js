@@ -75,5 +75,24 @@ export default {
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
           },
+          async getdata() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json", true)
+            xhr.onload = function (e) {
+              if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                  console.log(JSON.parse(xhr.responseText).prices[0].amount)
+                  if (this.elasticram>10) this.elasticram_pricepergb=(JSON.parse(xhr.responseText).prices[0].amount)
+                  else this.elasticram_pricepergb=(JSON.parse(xhr.responseText).prices[1].amount)
+                  console.log(this.elasticram_pricepergb)
+                } else {
+                  console.error(xhr.statusText)
+                }
+              }
+            }
+            xhr.send();
+            
+    
+          },
     }
 }

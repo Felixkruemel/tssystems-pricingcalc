@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="container-fluid">
-    <headerbrand v-on:showece="vueshowece"></headerbrand>
-    <div class="container-fixed">
+  <div id="app" class="container-fluid" style="display: flex; flex-direction:column; min-height:100vh">  
+    <headerbrand v-on:showece="vueshowece" style="flex-shrink:0"></headerbrand>
+    <div class="container-fixed" style="flex: 1">
       <div class="col-l-2 col-m-3 col-s-hide col-xs-hide">
         <sidebar v-on:showece="vueshowece" v-bind:selectedece="selectedece"></sidebar>
       </div>
@@ -79,7 +79,8 @@
       <!-- End of Implementation of all ECE containers -->
 
     </div>
-    <footerbrand></footerbrand>
+    <footerbrand class="brand-footer footer-new "></footerbrand>  
+    
     
   </div>
 </template>
@@ -174,7 +175,4 @@
 
 <style>
 
-  .small-container {
-    max-width: 680px;
-  }
 </style>

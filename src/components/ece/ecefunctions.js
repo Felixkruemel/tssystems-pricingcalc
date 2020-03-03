@@ -50,6 +50,11 @@ export default {
             this.logstashram=value
             alert(this.logstashram)
           },
+          vuechangelogstashpersistedqueue(value) {
+            value=parseInt(value, 10)
+            this.logstashpersistedqueue=value
+            alert(this.logstashpersistedqueue)
+          },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
     

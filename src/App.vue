@@ -61,6 +61,9 @@
               <div class="col-l-4">
                 <ecelogstashram v-bind:logstashram="logstashram" v-on:changelogstashram="vuechangelogstashram"></ecelogstashram>
               </div>  
+              <div class="col-l-4">
+                <ecelogstashpersisted v-bind:logstashpersistedqueue="logstashpersistedqueue" v-on:changelogstashpersistedqueue="vuechangelogstashpersistedqueue"></ecelogstashpersisted>
+              </div>  
             </div>
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
@@ -114,6 +117,7 @@
   import ecekibanaram from '@/components/ece/kibana/ecekibanaram.vue'
   import ecelogstashnodes from '@/components/ece/optional/logstash/ecelogstashnodes.vue'
   import ecelogstashram from '@/components/ece/optional/logstash/ecelogstashram.vue'
+  import ecelogstashpersisted from '@/components/ece/optional/logstash/ecelogstashpersisted.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -131,7 +135,7 @@
   import showeceoptional from '@/components/ece/ecefunctions.js'
   import vuechangelogstashnodes from '@/components/ece/ecefunctions.js'
   import vuechangelogstashram from '@/components/ece/ecefunctions.js'
-
+  
   export default {
     name: 'app',
     mixins: [vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
@@ -147,6 +151,7 @@
       ecekibanaram,
       ecelogstashnodes,
       ecelogstashram,
+      ecelogstashpersisted,
     },
     data () {
       return {
@@ -172,6 +177,7 @@
           selectedeceoptional:false,
           logstashanz:1,
           logstashram:1,
+          logstashpersistedqueue:50,
       }
     },
     methods: {

@@ -5,6 +5,9 @@
         <p style="text-align: center">Number of Nodes</p>
         <div class="form-input-set">
             <select v-bind:value="logstashanz" v-on:input="$emit('changelogstashnodes', $event.target.value)" class="form-select" style="background: white">
+                <option value=0>
+                    <p style="text-align: center">0</p>
+                </option>
                 <option value=1>
                     <p style="text-align: center">1</p>
                 </option>

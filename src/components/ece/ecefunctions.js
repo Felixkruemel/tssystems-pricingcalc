@@ -43,17 +43,20 @@ export default {
           vuechangelogstashnodes(value) {
             value=parseInt(value, 10)
             this.logstashanz=value
-            alert(this.logstashanz)
+            this.calclogstashprice()
+            this.calcecefinalprice()
           },
           vuechangelogstashram(value) {
             value=parseInt(value, 10)
             this.logstashram=value
-            alert(this.logstashram)
+            this.calclogstashprice()
+            this.calcecefinalprice()
           },
           vuechangelogstashpersistedqueue(value) {
             value=parseInt(value, 10)
             this.logstashpersistedqueue=value
-            alert(this.logstashpersistedqueue)
+            this.calclogstashprice()
+            this.calcecefinalprice()
           },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
@@ -87,10 +90,15 @@ export default {
             this.elasticdatabuffer=Math.floor(this.elasticdatabuffer)
           },
           calcecefinalprice() {
-            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice
+            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice+this.logstashprice
             this.ecefinalpricemonth=Number((this.ecefinalpricemonth).toFixed(2))
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
+          },
+          calclogstashprice() {
+            this.datainqueueonls=this.logstashanz*this.logstashpersistedqueue
+            this.logstashprice=((this.datainqueueonls*0.1)+(this.logstashanz*this.logstashram*7.03))
+            this.logstashprice=Number((this.logstashprice).toFixed(2))
           },
           showeceoptional() {
             if (this.selectedeceoptional==false) {

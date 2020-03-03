@@ -63,7 +63,8 @@
               </div>  
               <div class="col-l-4">
                 <ecelogstashpersisted v-bind:logstashpersistedqueue="logstashpersistedqueue" v-on:changelogstashpersistedqueue="vuechangelogstashpersistedqueue"></ecelogstashpersisted>
-              </div>  
+              </div>
+              <h4 style="text-align: center">Price: {{logstashprice}}€</h4>  
             </div>
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
@@ -81,7 +82,7 @@
           </div>
           <div class="col-l-2 col-m-4 col-s-4 col-xs-4">
             <p style="text-align: center">Data in queue on LS:</p> 
-            <p style="text-align: center">0</p>
+            <p style="text-align: center">{{datainqueueonls}} GB</p>
           </div>
           <div class="col-l-6 col-m-12 col-s-12 col-xs-12">
             <p style="text-align: center">Price for ELK in ECE:</p> 
@@ -135,10 +136,11 @@
   import showeceoptional from '@/components/ece/ecefunctions.js'
   import vuechangelogstashnodes from '@/components/ece/ecefunctions.js'
   import vuechangelogstashram from '@/components/ece/ecefunctions.js'
+  import calclogstashprice from '@/components/ece/ecefunctions.js'
   
   export default {
     name: 'app',
-    mixins: [vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -175,9 +177,11 @@
           ecefinalpriceyear:510.96,
           returnapi:null,
           selectedeceoptional:false,
-          logstashanz:1,
+          logstashanz:0,
           logstashram:1,
           logstashpersistedqueue:50,
+          logstashprice:0,
+          datainqueueonls:0,
       }
     },
     methods: {

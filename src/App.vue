@@ -84,6 +84,11 @@
               </div>
               <h4 style="text-align: center">Price: {{machinelearningprice}}€</h4>  
               <div class="row offset-bottom-3 hidden-s hidden-xs"></div>
+              <h4 style="color:#E20074; text-align: center">Support</h4>
+              <div class="col-l-12">
+                <ecesupport v-bind:supportcount="supportcount" v-on:changesupportcount="vuechangesupportcount"></ecesupport>
+              </div>  
+              <h4 style="text-align: center">Price: {{supportprice}}€</h4> 
             </div>
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
@@ -142,6 +147,7 @@
   import eceapmram from '@/components/ece/optional/apm/eceapmram.vue'
   import ecemachinelearningnodes from '@/components/ece/optional/machinelearning/ecemachinelearningnodes.vue'
   import ecemachinelearningram from '@/components/ece/optional/machinelearning/ecemachinelearningram.vue'
+  import ecesupport from '@/components/ece/optional/support/ecesupport.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -165,10 +171,11 @@
   import calcapmprice from '@/components/ece/ecefunctions.js'
   import vuechangemachinelearningnodes from '@/components/ece/ecefunctions.js'
   import vuechangemachinelearningram from '@/components/ece/ecefunctions.js'
+  import vuechangesupportcount from '@/components/ece/ecefunctions.js'
   
   export default {
     name: 'app',
-    mixins: [vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [vuechangesupportcount, vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -185,7 +192,8 @@
       eceapmnodes,
       eceapmram,
       ecemachinelearningnodes,
-      ecemachinelearningram
+      ecemachinelearningram,
+      ecesupport
     },
     data () {
       return {
@@ -220,6 +228,8 @@
           machinelearninganz:0,
           machinelearningram:1,
           machinelearningprice:0,
+          supportcount:0,
+          supportprice:0,
       }
     },
     methods: {

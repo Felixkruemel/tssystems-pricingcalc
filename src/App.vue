@@ -138,7 +138,7 @@
           elasticprice:24.26,
           elasticram_pricepergb:1.50,
           elasticdataincluster:16,
-          elasticdatabuffer:-224900,
+          elasticdatabuffer:-25,
           kibanaanz:1,
           kibanaram:1,
           kibanaprice:18.32,

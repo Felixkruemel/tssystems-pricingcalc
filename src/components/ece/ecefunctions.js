@@ -70,6 +70,18 @@ export default {
             this.calcapmprice()
             this.calcecefinalprice()
           },
+          vuechangemachinelearningnodes(value) {
+            value=parseInt(value, 10)
+            this.machinelearninganz=value
+            this.calcmachinelearningprice()
+            this.calcecefinalprice()
+          },
+          vuechangemachinelearningram(value) {
+            value=parseInt(value, 10)
+            this.machinelearningram=value
+            this.calcmachinelearningprice()
+            this.calcecefinalprice()
+          },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
     
@@ -102,7 +114,7 @@ export default {
             this.elasticdatabuffer=Math.floor(this.elasticdatabuffer)
           },
           calcecefinalprice() {
-            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice+this.logstashprice+this.apmprice
+            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice+this.logstashprice+this.apmprice+this.machinelearningprice
             this.ecefinalpricemonth=Number((this.ecefinalpricemonth).toFixed(2))
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
@@ -115,6 +127,10 @@ export default {
           calcapmprice() {
             this.apmprice=(((this.apmanz*this.apmram*7.03)+(this.apmanz*this.apmram*10.42))*1.25)
             this.apmprice=Number((this.apmprice).toFixed(2))
+          },
+          calcmachinelearningprice() {
+            this.machinelearningprice=(((this.machinelearninganz*this.machinelearningram*7.03)+(this.machinelearninganz*this.machinelearningram*10.42))*1.25)
+            this.machinelearningprice=Number((this.machinelearningprice).toFixed(2))
           },
           showeceoptional() {
             if (this.selectedeceoptional==false) {

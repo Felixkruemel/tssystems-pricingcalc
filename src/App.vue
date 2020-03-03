@@ -74,6 +74,16 @@
                 <eceapmram v-bind:apmram="apmram" v-on:changeapmram="vuechangeapmram"></eceapmram>
               </div> 
               <h4 style="text-align: center">Price: {{apmprice}}€</h4> 
+              <div class="row offset-bottom-3 hidden-s hidden-xs"></div>
+              <h4 style="color:#E20074; text-align: center">Machine Learning</h4>
+              <div class="col-l-6">
+                <ecemachinelearningnodes v-bind:machinelearninganz="machinelearninganz" v-on:changemachinelearningnodes="vuechangemachinelearningnodes"></ecemachinelearningnodes>
+              </div>
+              <div class="col-l-6">
+                <ecemachinelearningram v-bind:machinelearningram="machinelearningram" v-on:changemachinelearningram="vuechangemachinelearningram"></ecemachinelearningram>
+              </div>
+              <h4 style="text-align: center">Price: {{machinelearningprice}}€</h4>  
+              <div class="row offset-bottom-3 hidden-s hidden-xs"></div>
             </div>
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
@@ -130,6 +140,8 @@
   import ecelogstashpersisted from '@/components/ece/optional/logstash/ecelogstashpersisted.vue'
   import eceapmnodes from '@/components/ece/optional/apm/eceapmnodes.vue'
   import eceapmram from '@/components/ece/optional/apm/eceapmram.vue'
+  import ecemachinelearningnodes from '@/components/ece/optional/machinelearning/ecemachinelearningnodes.vue'
+  import ecemachinelearningram from '@/components/ece/optional/machinelearning/ecemachinelearningram.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -151,10 +163,12 @@
   import vuechangeapmnodes from '@/components/ece/ecefunctions.js'
   import vuechangeapmram from '@/components/ece/ecefunctions.js'
   import calcapmprice from '@/components/ece/ecefunctions.js'
+  import vuechangemachinelearningnodes from '@/components/ece/ecefunctions.js'
+  import vuechangemachinelearningram from '@/components/ece/ecefunctions.js'
   
   export default {
     name: 'app',
-    mixins: [calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -169,7 +183,9 @@
       ecelogstashram,
       ecelogstashpersisted,
       eceapmnodes,
-      eceapmram
+      eceapmram,
+      ecemachinelearningnodes,
+      ecemachinelearningram
     },
     data () {
       return {
@@ -201,6 +217,9 @@
           apmanz:0,
           apmram:0.512,
           apmprice:0,
+          machinelearninganz:0,
+          machinelearningram:1,
+          machinelearningprice:0,
       }
     },
     methods: {

@@ -65,6 +65,15 @@
                 <ecelogstashpersisted v-bind:logstashpersistedqueue="logstashpersistedqueue" v-on:changelogstashpersistedqueue="vuechangelogstashpersistedqueue"></ecelogstashpersisted>
               </div>
               <h4 style="text-align: center">Price: {{logstashprice}}€</h4>  
+              <div class="row offset-bottom-3 hidden-s hidden-xs"></div>
+              <h4 style="color:#E20074; text-align: center">APM</h4>
+              <div class="col-l-6">
+                <eceapmnodes v-bind:apmanz="apmanz" v-on:changeapmnodes="vuechangeapmnodes"></eceapmnodes>
+              </div>
+              <div class="col-l-6">
+                <eceapmram v-bind:apmram="apmram" v-on:changeapmram="vuechangeapmram"></eceapmram>
+              </div> 
+              <h4 style="text-align: center">Price: {{apmprice}}€</h4> 
             </div>
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
@@ -119,6 +128,8 @@
   import ecelogstashnodes from '@/components/ece/optional/logstash/ecelogstashnodes.vue'
   import ecelogstashram from '@/components/ece/optional/logstash/ecelogstashram.vue'
   import ecelogstashpersisted from '@/components/ece/optional/logstash/ecelogstashpersisted.vue'
+  import eceapmnodes from '@/components/ece/optional/apm/eceapmnodes.vue'
+  import eceapmram from '@/components/ece/optional/apm/eceapmram.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -137,10 +148,13 @@
   import vuechangelogstashnodes from '@/components/ece/ecefunctions.js'
   import vuechangelogstashram from '@/components/ece/ecefunctions.js'
   import calclogstashprice from '@/components/ece/ecefunctions.js'
+  import vuechangeapmnodes from '@/components/ece/ecefunctions.js'
+  import vuechangeapmram from '@/components/ece/ecefunctions.js'
+  import calcapmprice from '@/components/ece/ecefunctions.js'
   
   export default {
     name: 'app',
-    mixins: [vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -154,6 +168,8 @@
       ecelogstashnodes,
       ecelogstashram,
       ecelogstashpersisted,
+      eceapmnodes,
+      eceapmram
     },
     data () {
       return {
@@ -182,6 +198,9 @@
           logstashpersistedqueue:50,
           logstashprice:0,
           datainqueueonls:0,
+          apmanz:0,
+          apmram:0.512,
+          apmprice:0,
       }
     },
     methods: {

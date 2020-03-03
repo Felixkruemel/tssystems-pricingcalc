@@ -58,6 +58,18 @@ export default {
             this.calclogstashprice()
             this.calcecefinalprice()
           },
+          vuechangeapmnodes(value) {
+            value=parseInt(value, 10)
+            this.apmanz=value
+            this.calcapmprice()
+            this.calcecefinalprice()
+          },
+          vuechangeapmram(value) {
+            value=parseFloat(value)
+            this.apmram=value
+            this.calcapmprice()
+            this.calcecefinalprice()
+          },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
     
@@ -90,7 +102,7 @@ export default {
             this.elasticdatabuffer=Math.floor(this.elasticdatabuffer)
           },
           calcecefinalprice() {
-            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice+this.logstashprice
+            this.ecefinalpricemonth=this.kibanaprice+this.elasticprice+this.logstashprice+this.apmprice
             this.ecefinalpricemonth=Number((this.ecefinalpricemonth).toFixed(2))
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
@@ -99,6 +111,10 @@ export default {
             this.datainqueueonls=this.logstashanz*this.logstashpersistedqueue
             this.logstashprice=((this.datainqueueonls*0.1)+(this.logstashanz*this.logstashram*7.03))
             this.logstashprice=Number((this.logstashprice).toFixed(2))
+          },
+          calcapmprice() {
+            this.apmprice=(((this.apmanz*this.apmram*7.03)+(this.apmanz*this.apmram*10.42))*1.25)
+            this.apmprice=Number((this.apmprice).toFixed(2))
           },
           showeceoptional() {
             if (this.selectedeceoptional==false) {

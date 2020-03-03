@@ -40,6 +40,11 @@ export default {
             this.kibanaram=value
             this.calckibanaprice();
           },
+          vuechangelogstashnodes(value) {
+            value=parseInt(value, 10)
+            this.logstashanz=value
+            alert(this.logstashanz)
+          },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
     
@@ -77,6 +82,15 @@ export default {
             this.ecefinalpriceyear=12*this.ecefinalpricemonth
             this.ecefinalpriceyear=Number((this.ecefinalpriceyear).toFixed(2))
           },
+          showeceoptional() {
+            if (this.selectedeceoptional==false) {
+              this.selectedeceoptional=true;
+            }  
+            else if (this.selectedeceoptional==true) {
+              this.selectedeceoptional=false;
+            }
+          },
+          
       /*    async getdata() {
             var xhr = new XMLHttpRequest();
             var response = new Object();

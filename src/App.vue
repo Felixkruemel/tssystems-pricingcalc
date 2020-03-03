@@ -49,6 +49,20 @@
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
           <!-- End Kibana -->
 
+          <div class="col-l-12">
+            <div class="h-ctr">
+              <button class="btn" v-on:click="showeceoptional" v-bind:class="{'btn-brand':selectedeceoptional}">Show optional Components</button>
+            </div>
+            <div v-if="selectedeceoptional">
+              <h4 style="color:#E20074; text-align: center">Logstash</h4>
+              <div class="col-l-4">
+                <ecelogstashnodes v-bind:logstashanz="logstashanz" v-on:changelogstashnodes="vuechangelogstashnodes"></ecelogstashnodes>
+              </div>  
+            </div>
+          </div>
+          <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
+          <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+
           <!-- Start Final Pricing -->
           <h4 style="color:#E20074; text-align: center">Final Pricing</h4>
           <div class="col-l-2 col-m-4 col-s-4 col-xs-4">
@@ -95,6 +109,7 @@
   import eceelasticram from '@/components/ece/elastic/eceelasticram.vue'
   import ecekibananodes from '@/components/ece/kibana/ecekibananodes.vue'
   import ecekibanaram from '@/components/ece/kibana/ecekibanaram.vue'
+  import ecelogstashnodes from '@/components/ece/optional/logstash/ecelogstashnodes.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -109,10 +124,12 @@
   import calcelasticdatabuffer from '@/components/ece/ecefunctions.js'
   import calcecefinalprice from '@/components/ece/ecefunctions.js'
   import getdata from '@/components/ece/ecefunctions.js'
+  import showeceoptional from '@/components/ece/ecefunctions.js'
+  import vuechangelogstashnodes from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
-    mixins: [getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -123,6 +140,7 @@
       eceelasticram,
       ecekibananodes,
       ecekibanaram,
+      ecelogstashnodes,
     },
     data () {
       return {
@@ -145,6 +163,8 @@
           ecefinalpricemonth:42.58,
           ecefinalpriceyear:510.96,
           returnapi:null,
+          selectedeceoptional:false,
+          logstashanz:1,
       }
     },
     methods: {

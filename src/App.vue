@@ -57,6 +57,9 @@
               <h4 style="color:#E20074; text-align: center">Logstash</h4>
               <div class="col-l-4">
                 <ecelogstashnodes v-bind:logstashanz="logstashanz" v-on:changelogstashnodes="vuechangelogstashnodes"></ecelogstashnodes>
+              </div>
+              <div class="col-l-4">
+                <ecelogstashram v-bind:logstashram="logstashram" v-on:changelogstashram="vuechangelogstashram"></ecelogstashram>
               </div>  
             </div>
           </div>
@@ -110,6 +113,7 @@
   import ecekibananodes from '@/components/ece/kibana/ecekibananodes.vue'
   import ecekibanaram from '@/components/ece/kibana/ecekibanaram.vue'
   import ecelogstashnodes from '@/components/ece/optional/logstash/ecelogstashnodes.vue'
+  import ecelogstashram from '@/components/ece/optional/logstash/ecelogstashram.vue'
   import vuedataday from '@/components/ece/ecefunctions.js'
   import vuedatareplikas from '@/components/ece/ecefunctions.js'
   import vuedataretention from '@/components/ece/ecefunctions.js'
@@ -126,10 +130,11 @@
   import getdata from '@/components/ece/ecefunctions.js'
   import showeceoptional from '@/components/ece/ecefunctions.js'
   import vuechangelogstashnodes from '@/components/ece/ecefunctions.js'
+  import vuechangelogstashram from '@/components/ece/ecefunctions.js'
 
   export default {
     name: 'app',
-    mixins: [showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
       sidebar,
@@ -141,6 +146,7 @@
       ecekibananodes,
       ecekibanaram,
       ecelogstashnodes,
+      ecelogstashram,
     },
     data () {
       return {
@@ -165,6 +171,7 @@
           returnapi:null,
           selectedeceoptional:false,
           logstashanz:1,
+          logstashram:1,
       }
     },
     methods: {

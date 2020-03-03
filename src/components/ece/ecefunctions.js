@@ -45,6 +45,11 @@ export default {
             this.logstashanz=value
             alert(this.logstashanz)
           },
+          vuechangelogstashram(value) {
+            value=parseInt(value, 10)
+            this.logstashram=value
+            alert(this.logstashram)
+          },
           calcdatacapacity() {
             this.datacapacity=this.dataday*((this.datareplikas)+1)*this.dataretention;
     

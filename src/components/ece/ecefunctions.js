@@ -149,6 +149,9 @@ export default {
               this.selectedeceoptional=false;
             }
           },
+          apicall() {
+            console.log(this.returnapi2)
+          }
           
       /*    async getdata() {
             var xhr = new XMLHttpRequest();

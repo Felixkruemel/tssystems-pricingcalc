@@ -41,7 +41,17 @@
                                         <li><a class="hidden-xl hidden-l hidden-m" href="#">service2</a></li>
                                     </ul>
                                 </div>
-                            </li>    
+                            </li>
+                            <li class="dropdown hidden-s hidden-xs">
+                                <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Services
+                                </a>
+                                <ul class="dropdown-menu" style="margin-top:-10px">
+                                    <li><a href="#" style="font-size:18px" v-on:click="$emit('showece')">ECE</a></li>
+                                    <li><a href="#" style="font-size:18px">test2</a></li>
+                                </ul>
+                            </li> 
+                            
                         </ul>
                     </div>
                 </div>
@@ -66,8 +76,11 @@
 <script>
 export default {
     name:"headerbrand" ,
-    props: {
-        
+    data () {
+        return {
+        }
     },
+    methods: {
+    }
 }
 </script>

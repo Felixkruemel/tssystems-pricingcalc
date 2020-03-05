@@ -2,13 +2,13 @@
   <div id="app" class="container-fluid" style="display: flex; flex-direction:column; min-height:100vh">  
     <headerbrand v-on:showece="vueshowece" style="flex-shrink:0"></headerbrand>
     <div class="container-fixed" style="flex: 1">
-      <div class="col-l-2 col-m-3 col-s-hide col-xs-hide">
+      <!-- <div class="col-l-2 col-m-3 col-s-hide col-xs-hide">
         <sidebar v-on:showece="vueshowece" v-bind:selectedece="selectedece"></sidebar>
       </div>
-      <div class="col-xl-1 col-l-1 col-m-1 col-s-hide col-xs-hide"></div>
+      <div class="col-xl-1 col-l-1 col-m-1 col-s-hide col-xs-hide"></div> -->
 
       <!-- Start Implementation of all ECE containers -->
-      <div v-if="selectedece" class="col-xl-9 col-l-9 col-m-8 col-s-12 col-xs-12" >
+      <div v-if="selectedece" class="col-xl-12 col-l-12 col-m-12 col-s-12 col-xs-12" >
         <div class="col-l-12 col-m-12 col-s-hide col-xs-hide"  style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px">
           <h2 style="color:#E20074; text-align: center"><strong>Options</strong></h2>
         </div>
@@ -48,10 +48,11 @@
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
           <!-- End Kibana -->
-
+          
+          <!-- Start ECE optional -->
           <div class="col-l-12">
             <div class="h-ctr">
-              <button class="btn" v-on:click="showeceoptional" v-bind:class="{'btn-brand':selectedeceoptional}">Show optional Components</button>
+              <button class="btn btn-default" v-on:click="showeceoptional" v-bind:class="{'btn-brand':selectedeceoptional}"><i class=" icon icon-context-menu" aria-hidden="true"></i>Show optional Components</button>
             </div>
             <div v-if="selectedeceoptional">
               <h4 style="color:#E20074; text-align: center">Logstash</h4>
@@ -93,6 +94,7 @@
           </div>
           <div class="row" style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px"></div>
           <div class="row offset-bottom-5 hidden-s hidden-xs"></div>
+          <!-- END ECE Optional -->
 
           <!-- Start Final Pricing -->
           <h4 style="color:#E20074; text-align: center">Final Pricing</h4>
@@ -124,6 +126,7 @@
       <!-- End of Implementation of all ECE containers -->
 
     </div>
+  <!--  <button v-on:click="apicall">Klick me</button> -->
     <footerbrand class="brand-footer footer-new "></footerbrand>  
     
     
@@ -132,7 +135,7 @@
 
 <script>
   import headerbrand from '@/components/headerbrand.vue'
-  import sidebar from '@/components/Sidebar.vue'
+  // import sidebar from '@/components/Sidebar.vue'
   import footerbrand from '@/components/footerbrand.vue'
   import ecedata from '@/components/ece/data/ecedata.vue'
   import eceelasticnodes from '@/components/ece/elastic/eceelasticnodes.vue'
@@ -172,13 +175,14 @@
   import vuechangemachinelearningnodes from '@/components/ece/ecefunctions.js'
   import vuechangemachinelearningram from '@/components/ece/ecefunctions.js'
   import vuechangesupportcount from '@/components/ece/ecefunctions.js'
+  import apicall from '@/components/ece/ecefunctions.js'
   
   export default {
     name: 'app',
-    mixins: [vuechangesupportcount, vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
+    mixins: [apicall, vuechangesupportcount, vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
-      sidebar,
+      
       footerbrand,
       ecedata,
       eceelasticnodes,
@@ -230,6 +234,7 @@
           machinelearningprice:0,
           supportcount:0,
           supportprice:0,
+          returnapi2:null,
       }
     },
     methods: {
@@ -250,6 +255,13 @@
       this.axios
         .get('https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json')
         .then(response => (this.returnapi=response.data))
+    /*  this.axios
+        .get('http://preisrechner.bmptest.de/de/open-telekom-price-api/?responseFormat=json&serviceName%5B0%5D=ecs&columns%5B1%5D=priceAmount&limitMax=1000&filterBy%5BvCpu%5D=4&filterBy%5Bram%5D=8&nocache=0' , {
+          headers: {
+            crossdomain: true,
+          },
+        })
+        .then(response => (this.returnapi2=response.data)) */
     }
     
 

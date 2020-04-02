@@ -28,7 +28,7 @@
                         sizes="width:100% height:5%">
                 </picture>   
                 <div class="cent">
-                    <h1 style="color: black; font-weight:bold">Price Calculator for the Open Telecom Cloud</h1>
+                    <h1 style="color: black; font-weight:bold">Price Calculator Addon for Open Telecom Cloud</h1>
                 </div>
             </div>
         

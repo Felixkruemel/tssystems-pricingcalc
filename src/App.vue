@@ -180,6 +180,7 @@
   import vuechangesupportcount from '@/components/ece/ecefunctions.js'
   import apicall from '@/components/ece/ecefunctions.js'
   
+
   export default {
     name: 'app',
     mixins: [apicall, vuechangesupportcount, vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
@@ -260,14 +261,14 @@
     mounted() {
      /* this.axios
         .get('https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json')
-        .then(response => (this.returnapi=response.data))
+        .then(response => (this.returnapi=response.data)) */
       this.axios
         .get('http://preisrechner.bmptest.de/de/open-telekom-price-api/?responseFormat=json&serviceName%5B0%5D=ecs&columns%5B1%5D=priceAmount&limitMax=1000&filterBy%5BvCpu%5D=4&filterBy%5Bram%5D=8&nocache=0' , {
           headers: {
             crossdomain: true,
           },
         })
-        .then(response => (this.returnapi2=response.data)) */
+        .then(response => (this.returnapi2=response.data)) 
     } 
     
 

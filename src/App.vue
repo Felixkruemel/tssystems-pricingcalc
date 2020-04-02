@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="container-fluid" style="display: flex; flex-direction:column; min-height:100vh">  
     <headerbrand v-on:showece="vueshowece" style="flex-shrink:0"></headerbrand>
+    <index v-if="selectedindex"></index>
     <div class="container-fixed" style="flex: 1">
       <!-- <div class="col-l-2 col-m-3 col-s-hide col-xs-hide">
         <sidebar v-on:showece="vueshowece" v-bind:selectedece="selectedece"></sidebar>
@@ -8,6 +9,7 @@
       <div class="col-xl-1 col-l-1 col-m-1 col-s-hide col-xs-hide"></div> -->
 
       <!-- Start Implementation of all ECE containers -->
+      
       <div v-if="selectedece" class="col-xl-12 col-l-12 col-m-12 col-s-12 col-xs-12" >
         <div class="col-l-12 col-m-12 col-s-hide col-xs-hide"  style="border-bottom-style: solid; border-color: #d9d9d9; border-width: 1px">
           <h2 style="color:#E20074; text-align: center"><strong>Options</strong></h2>
@@ -135,6 +137,7 @@
 
 <script>
   import headerbrand from '@/components/headerbrand.vue'
+  import index from '@/components/index.vue'
   // import sidebar from '@/components/Sidebar.vue'
   import footerbrand from '@/components/footerbrand.vue'
   import ecedata from '@/components/ece/data/ecedata.vue'
@@ -182,7 +185,7 @@
     mixins: [apicall, vuechangesupportcount, vuechangemachinelearningram, vuechangemachinelearningnodes, calcapmprice, vuechangeapmram, vuechangeapmnodes, vuechangelogstashram, showeceoptional, vuechangelogstashnodes, getdata, vuedataday, vuedatareplikas, vuedataretention, vuechangeelasticnodes, vuechangeelasticramratio, vuechangeelasticram, vuechangekibananodes, vuechangekibanaram, calclogstashprice, calcdatacapacity, calcelasticprice, calckibanaprice, calcelasticdatabuffer, calcecefinalprice],
     components: {
       headerbrand,
-      
+      index,
       footerbrand,
       ecedata,
       eceelasticnodes,
@@ -202,6 +205,7 @@
     data () {
       return {
           dataday:10,
+          selectedindex:true,
           showece:false,
           selectedece:false,
           datareplikas:1,
@@ -240,10 +244,12 @@
     methods: {
       vueshowece() {
         if (this.showece==false) {
+          this.selectedindex=false;
           this.showece=true;
           this.selectedece=true;
         }  
         else if (this.showece==true) {
+          this.selectedindex=true;
           this.showece=false;
           this.selectedece=false;
           this.test();
@@ -252,17 +258,17 @@
 
     },
     mounted() {
-      this.axios
+     /* this.axios
         .get('https://raw.githubusercontent.com/Felixkruemel/testjsonrepo2/master/db.json')
         .then(response => (this.returnapi=response.data))
-    /*  this.axios
+      this.axios
         .get('http://preisrechner.bmptest.de/de/open-telekom-price-api/?responseFormat=json&serviceName%5B0%5D=ecs&columns%5B1%5D=priceAmount&limitMax=1000&filterBy%5BvCpu%5D=4&filterBy%5Bram%5D=8&nocache=0' , {
           headers: {
             crossdomain: true,
           },
         })
         .then(response => (this.returnapi2=response.data)) */
-    }
+    } 
     
 
 

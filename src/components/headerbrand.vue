@@ -30,10 +30,7 @@
                     </div>
                     <div class="brandnav brandnav-lvl-1" id="MainMenu">
                         <ul class="nav">
-                            <li><a href="https://open-telekom-cloud.com/de">OPEN TELEKOM CLOUD</a></li>
-                            <li class="active"><a href="index.html">Startpage</a></li>
-                            <li><a href="https://open-telekom-cloud.com/en/support">Help</a></li>
-                            <li><a href="https://open-telekom-cloud.com/en/support">Contact</a></li>
+                            <li class="active"><a href="index.html">Price Calculator</a></li>
                             <li><a class="hidden-xl hidden-l hidden-m" data-open="brandnav">Services</a>
                                 <div class="brandnav">
                                     <ul class="nav">
@@ -51,7 +48,7 @@
                                     <li><a href="#" style="font-size:18px">test2</a></li>
                                 </ul>
                             </li> 
-                            
+                            <li><a href="https://open-telekom-cloud.com/en">Open Telekom Cloud</a></li>
                         </ul>
                     </div>
                 </div>
